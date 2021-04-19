@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="125444" started-at="2021-04-19T07:16:41Z" finished-at="2021-04-19T07:18:46Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="125444" started-at="2021-04-19T07:16:41Z" finished-at="2021-04-19T07:18:46Z">
+      <class name="com.qa.ErgodeBook.TestCase.LoginPageTest">
+        <test-method status="PASS" signature="ExtentReportsetUp()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="ExtentReportsetUp" is-config="true" duration-ms="236" started-at="2021-04-19T07:16:41Z" finished-at="2021-04-19T07:16:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ExtentReportsetUp -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="setup" is-config="true" duration-ms="14891" started-at="2021-04-19T07:16:41Z" finished-at="2021-04-19T07:16:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="LoginPageTitleTest()[pri:1, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="LoginPageTitleTest" duration-ms="40" started-at="2021-04-19T07:16:56Z" finished-at="2021-04-19T07:16:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginPageTitleTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="tearDown" is-config="true" duration-ms="750" started-at="2021-04-19T07:16:56Z" finished-at="2021-04-19T07:16:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="setup" is-config="true" duration-ms="13986" started-at="2021-04-19T07:16:57Z" finished-at="2021-04-19T07:17:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="LoginPageLogoImgTest()[pri:2, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="LoginPageLogoImgTest" duration-ms="429" started-at="2021-04-19T07:17:11Z" finished-at="2021-04-19T07:17:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginPageLogoImgTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="tearDown" is-config="true" duration-ms="733" started-at="2021-04-19T07:17:11Z" finished-at="2021-04-19T07:17:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="setup" is-config="true" duration-ms="12444" started-at="2021-04-19T07:17:12Z" finished-at="2021-04-19T07:17:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="loginwithEmptyIdAndPassTest()[pri:3, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="loginwithEmptyIdAndPassTest" duration-ms="4472" started-at="2021-04-19T07:17:24Z" finished-at="2021-04-19T07:17:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginwithEmptyIdAndPassTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="tearDown" is-config="true" duration-ms="783" started-at="2021-04-19T07:17:29Z" finished-at="2021-04-19T07:17:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="setup" is-config="true" duration-ms="12586" started-at="2021-04-19T07:17:30Z" finished-at="2021-04-19T07:17:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="loginwithValidIdTest()[pri:4, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="loginwithValidIdTest" duration-ms="5000" started-at="2021-04-19T07:17:42Z" finished-at="2021-04-19T07:17:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginwithValidIdTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="tearDown" is-config="true" duration-ms="762" started-at="2021-04-19T07:17:47Z" finished-at="2021-04-19T07:17:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="setup" is-config="true" duration-ms="12173" started-at="2021-04-19T07:17:48Z" finished-at="2021-04-19T07:18:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="loginwithValidPassTest()[pri:5, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="loginwithValidPassTest" duration-ms="20440" started-at="2021-04-19T07:18:00Z" finished-at="2021-04-19T07:18:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginwithValidPassTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="tearDown" is-config="true" duration-ms="773" started-at="2021-04-19T07:18:20Z" finished-at="2021-04-19T07:18:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="setup" is-config="true" duration-ms="14011" started-at="2021-04-19T07:18:21Z" finished-at="2021-04-19T07:18:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="loginwithValidIdAndPassTest()[pri:6, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="loginwithValidIdAndPassTest" duration-ms="10421" started-at="2021-04-19T07:18:35Z" finished-at="2021-04-19T07:18:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginwithValidIdAndPassTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="tearDown" is-config="true" duration-ms="719" started-at="2021-04-19T07:18:46Z" finished-at="2021-04-19T07:18:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="tearExtentReport()[pri:0, instance:com.qa.ErgodeBook.TestCase.LoginPageTest@f2f2cc1]" name="tearExtentReport" is-config="true" duration-ms="323" started-at="2021-04-19T07:18:46Z" finished-at="2021-04-19T07:18:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearExtentReport -->
+      </class> <!-- com.qa.ErgodeBook.TestCase.LoginPageTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
