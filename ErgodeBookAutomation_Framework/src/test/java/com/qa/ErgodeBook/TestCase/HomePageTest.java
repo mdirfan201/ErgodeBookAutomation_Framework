@@ -40,7 +40,7 @@ public class HomePageTest extends TestBasae{
 	public void setupReports() {
 		
 		extent = new ExtentReports();
-		spark = new ExtentSparkReporter("ErgodeBook_AutomationReport.html");
+		spark = new ExtentSparkReporter("C:\\Users\\MY-PC.DESKTOP-8EQSD1V\\git\\ErgodeBookAutomation_Framework\\ErgodeBookAutomation_Framework\\ExtentReports\\ErgodeBook_AutomationReport.html");
 		spark.config().setTheme(Theme.DARK);
 		spark.config().setDocumentTitle("Automation Tes");
 		extent.attachReporter(spark);

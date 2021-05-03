@@ -1,4 +1,4 @@
-package com.book.qa.page;
+	package com.book.qa.page;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,6 +32,15 @@ public class LoginPage extends TestBasae{
 	@FindBy(xpath="//span[normalize-space()='Home']")
 	public WebElement clickHomeLogo;
 	
+	@FindBy(xpath="//div[@id='welcome']//a[text()=' Logout )']")
+	public WebElement LogoutBtn;
+	
+	@FindBy(xpath="//div[@class='right']//a[text()='Continue']")
+	public WebElement ContinueBtn;
+	
+	@FindBy(xpath="//a[@class='forgot_pass']")
+	public WebElement clickOnForgotPassword;
+	
 	//Actions:
 	public String validateLoginPageTitle() {
 		return driver.getTitle();
@@ -47,5 +56,14 @@ public class LoginPage extends TestBasae{
 		loginBtn.click();
 	}
 	
+	public ForgotPasswordPage ClickOnForgotPassword() {
+		clickOnForgotPassword.click();
+		
+		return new ForgotPasswordPage();
+	}
 	
+	public void clickOnLogoutBtn() {
+		LogoutBtn.click();
+		ContinueBtn.click();
+	}
 }

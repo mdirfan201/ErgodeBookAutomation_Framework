@@ -6,10 +6,15 @@
       <class name="com.qa.ErgodeBook.TestCase.LoginPageTest">
         <methods>
           <include name="setup"/>
+          <include name="loginwithValidPassTest"/>
+          <include name="loginwithEmptyIdAndPassTest"/>
           <include name="tearDown"/>
           <include name="tearExtentReport"/>
           <include name="loginwithValidIdAndPassTest"/>
           <include name="ExtentReportsetUp"/>
+          <include name="LoginPageLogoImgTest"/>
+          <include name="LoginPageTitleTest"/>
+          <include name="loginwithValidIdTest"/>
         </methods>
       </class> <!-- com.qa.ErgodeBook.TestCase.LoginPageTest -->
     </classes>

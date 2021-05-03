@@ -16,9 +16,7 @@ public class RegisterAccountPage extends TestBasae {
 	@FindBy(xpath="//h1[normalize-space()='Register Account']")
 	WebElement RegisterAccountlogo;
 	
-	@FindBy(xpath="//a[normalize-space()='create an account']")
-	WebElement clickCreateAcount;
-	
+	//YOUR PERSONAL DETAILS:
 	@FindBy(xpath="//input[@name='firstname']")
 	WebElement txtfirstname;
 	@FindBy(xpath="//input[@name='lastname']")
@@ -37,20 +35,23 @@ public class RegisterAccountPage extends TestBasae {
 	@FindBy(xpath="//input[@value='Continue']")
 	WebElement continuebtn;
 	
+	
+	
+	public String validateRegisterPageTitle() {
+		return driver.getTitle();
+	}
 	public boolean  RegisterAccountLable() {
 		return RegisterAccountlogo.isDisplayed();
 	}
-	public void clickToRgister() {
-		clickCreateAcount.click();
-	}
-	public void setAccountDetails(String FirstName,String LastName,String Email,String Dob,String Password,String Confirmpass) {
-		txtfirstname.sendKeys(FirstName);
-		txtlastname.sendKeys(LastName);
-		txtemailId.sendKeys(Email);
-		txtdob.sendKeys(Dob);
+	
+	public void setAccountDetails(String ftName,String ltName,String email,String dob,String pwd,String Confirmpwd) {
+		txtfirstname.sendKeys(ftName);
+		txtlastname.sendKeys(ltName);
+		txtemailId.sendKeys(email);
+		txtdob.sendKeys(dob);
 		txtdob.sendKeys(Keys.ENTER);
-		txtpassword.sendKeys(Password);
-		txtconfirmpass.sendKeys(Confirmpass);
+		txtpassword.sendKeys(pwd);
+		txtconfirmpass.sendKeys(Confirmpwd);
 	}
 	public void clickCheckBox() {
 		clickCheckBox.click();

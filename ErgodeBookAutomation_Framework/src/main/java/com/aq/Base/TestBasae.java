@@ -26,7 +26,7 @@ public class TestBasae {
 	public TestBasae() {
 		try {
 			prop = new Properties();
-			FileInputStream ip = new FileInputStream("D:\\IRFAN---\\java program\\ErgodeBookAutomation_Framework\\src\\main\\java\\com\\qa\\config\\config.properties");
+			FileInputStream ip = new FileInputStream("C:\\Users\\MY-PC.DESKTOP-8EQSD1V\\git\\ErgodeBookAutomation_Framework\\ErgodeBookAutomation_Framework\\src\\main\\java\\com\\qa\\config\\config.properties");
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -68,7 +68,8 @@ public class TestBasae {
 	public void getFailedScreenShot(String testMethodName) {
 		File src=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(src, new File("D:\\IRFAN---\\java program\\ErgodeBookAutomation_Framework\\ScreenShots\\"+testMethodName+"_"+ ".png"));
+			FileUtils.copyFile(src, new File("C:\\Users\\MY-PC.DESKTOP-8EQSD1V\\git\\ErgodeBookAutomation_Framework\\"+
+								"ErgodeBookAutomation_Framework\\ScreenShots\\"+testMethodName+"_"+ ".png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

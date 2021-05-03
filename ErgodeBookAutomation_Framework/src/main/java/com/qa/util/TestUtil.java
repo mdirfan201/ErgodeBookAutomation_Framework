@@ -19,7 +19,9 @@ public class TestUtil {
 	public static long IMPLICIT_WAIT_TIMEOUT=60;
 	
 	
-	public static String TESTDATA_SHEET_PATH = "D:\\IRFAN---\\java program\\ErgodeBookAutomation_Framework\\src\\main\\java\\com\\ErgodeBook\\TestData\\ErgodeBook.xlsx";
+	public static String TESTDATA_SHEET_PATH = "C:\\Users\\MY-PC.DESKTOP-8EQSD1V\\git\\ErgodeBookAutomation_Framework\\"+ 
+												"ErgodeBookAutomation_Framework\\src\\main\\java\\com\\ErgodeBook\\TestData\\"+ 
+												"ErgodeBook.xlsx";
 
 	static Workbook book;
 	static Sheet sheet;
@@ -41,12 +43,11 @@ public class TestUtil {
 		}
 		sheet = book.getSheet(sheetName);
 		Object[][] data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
-		// System.out.println(sheet.getLastRowNum() + "--------" +
-		// sheet.getRow(0).getLastCellNum());
+		
 		for (int i = 0; i < sheet.getLastRowNum(); i++) {
 			for (int k = 0; k < sheet.getRow(0).getLastCellNum(); k++) {
 				data[i][k] = sheet.getRow(i + 1).getCell(k).toString();
-				// System.out.println(data[i][k]);
+				
 			}
 		}
 		return data;

@@ -3,15 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.qa.ErgodeBook.TestCase.LoginPageTest">
+      <class name="com.qa.ErgodeBook.TestCase.ForgotPageTest">
         <methods>
           <include name="setup"/>
-          <include name="tearDown"/>
+          <include name="ExtentReportsetUp"/>
+          <include name="enterForgotPasswordEmailAdressEmptyTest"/>
           <include name="tearExtentReport"/>
-          <include name="setupReports"/>
-          <include name="LoginWithValidUserIdAndPassword"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- com.qa.ErgodeBook.TestCase.LoginPageTest -->
+      </class> <!-- com.qa.ErgodeBook.TestCase.ForgotPageTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

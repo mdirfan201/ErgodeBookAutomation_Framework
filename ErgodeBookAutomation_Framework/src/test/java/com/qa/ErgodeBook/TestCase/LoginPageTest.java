@@ -1,13 +1,16 @@
 package com.qa.ErgodeBook.TestCase;
 
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aq.Base.TestBasae;
@@ -19,7 +22,10 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.book.qa.page.HomePage;
 import com.book.qa.page.LoginPage;
+import com.qa.Custome_Listener.CustomeListner;
 
+
+@Listeners(CustomeListner.class)
 public class LoginPageTest extends TestBasae {
 	static ExtentReports extent;
 	static ExtentSparkReporter spark;
@@ -36,9 +42,9 @@ public class LoginPageTest extends TestBasae {
 	public void ExtentReportsetUp() {
 		
 		extent= new ExtentReports();
-		spark=new ExtentSparkReporter("ErgodeBook_LoginPageReport.html");
+		spark=new ExtentSparkReporter("C:\\Users\\MY-PC.DESKTOP-8EQSD1V\\git\\ErgodeBookAutomation_Framework\\ErgodeBookAutomation_Framework\\ExtentReports\\ErgodeBook_LoginPageReport.html");
 		spark.config().setTheme(Theme.DARK);
-		spark.config().setDocumentTitle("Automation Tes");
+		spark.config().setDocumentTitle("Automation Test");
 		spark.config().setReportName("Mohammed Irfanullah Ansari");
 		extent.attachReporter(spark);
 		
@@ -80,15 +86,15 @@ public class LoginPageTest extends TestBasae {
 		test=extent.createTest("TC_02 : Validate Login Page Logo Image");
 		boolean flag=loginpage.validateLoginPageImage();
 		Assert.assertTrue(flag);
-		test.info("LoginPage Logo Image isDisplayed Successfully");
-		test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
+		test.info("LoginPage Logo Image is Displayed Successfully");
+		//test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
 	}
 	@Test(priority=3)
 	public void loginwithEmptyIdAndPassTest() {
 		test=extent.createTest("TC_03 :Login with Empty fields in LoginPage Test");
 		loginpage.login("", "");
 		test.info("The waring msg displyed is===> "+ driver.findElement(By.xpath("//div[@class='warning']")).getText());
-		test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
+		//test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
 	}
 	
 	@Test(priority=4)
@@ -96,7 +102,7 @@ public class LoginPageTest extends TestBasae {
 		test=extent.createTest("TC_04 :Login with Valid EmailAddress in LoginPage Test");
 		loginpage.login(prop.getProperty("username"), prop.getProperty("invalidPass"));
 		test.info("The waring msg displyed is===> "+ driver.findElement(By.xpath("//div[@class='warning']")).getText());
-		test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
+		//test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
 	}
 	
 	@Test(priority=5)
@@ -104,24 +110,45 @@ public class LoginPageTest extends TestBasae {
 		test=extent.createTest("TC_05 :Login with Valid Password in LoginPage Test");
 		loginpage.login(prop.getProperty("invalidusername"), prop.getProperty("password"));
 		test.info("The waring msg displyed is===> "+ driver.findElement(By.xpath("//div[@class='warning']")).getText());
-		test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
+		//test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
 	}
 	
 	@Test(priority=6)
-	public void loginwithValidIdAndPassTest() {
+	public void loginwithValidIdAndPassTest() throws InterruptedException {
 		test=extent.createTest("TC_06 :Login with Valid EmailAddress ans Valid Password in LoginPage Test");
 		loginpage.login(prop.getProperty("username"), prop.getProperty("password"));
 		test.info("TestCase Passesed successfully");
+		//test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
 		homepage.clickHomePageLogo();
-		test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
+		//test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
+		loginpage.clickOnLogoutBtn();
+		Thread.sleep(2000);
+		//test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
 	}
 	
+	
 	@AfterMethod
-	public void tearDown() {
+	public void tearDown(ITestResult result) {
+		if(result.getStatus()==ITestResult.FAILURE) {
+			test.log(Status.FAIL, "Test cases Failed ==>" + result.getName());
+			test.log(Status.FAIL, "Test cases Error is==>" + result.getThrowable());
+			String screenshotPath=LoginPageTest.getBase64ScreenShots();
+			test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotPath).build());
+		}
+		else if(result.getStatus()==ITestResult.SKIP) {
+			test.log(Status.SKIP, "Test cases Skiped ==>" + result.getName());
+			test.log(Status.SKIP, "Test cases Skiped ==>" + result.getThrowable());	
+		}
+		else if(result.getStatus()==ITestResult.SUCCESS) {
+			test.log(Status.PASS, "Test cases Pass==>" + result.getName());
+			String screenshotPath=LoginPageTest.getBase64ScreenShots();
+			test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotPath).build());
+		}
+		
 		driver.quit();
 	}
 	
-	public String getBase64ScreenShots() {
+	public static String getBase64ScreenShots() {
 		return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
 	}
 }
