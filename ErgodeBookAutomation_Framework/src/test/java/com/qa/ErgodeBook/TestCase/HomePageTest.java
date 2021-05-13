@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -24,6 +27,7 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.book.qa.page.HomePage;
 import com.qa.Custome_Listener.CustomeListner;
+import com.qa.util.JavaScriptUtil;
 
 @Listeners(CustomeListner.class)
 public class HomePageTest extends TestBasae{
@@ -32,7 +36,7 @@ public class HomePageTest extends TestBasae{
 	static ExtentSparkReporter spark;
 	static ExtentTest test;
 	static HomePage homepage;
-	
+	static HomePageTest homepagetest;
 	public HomePageTest() {
 		super();
 	}
@@ -63,6 +67,7 @@ public class HomePageTest extends TestBasae{
 		test=extent.createTest("Oeping Chrome and entering into URL");
 		initialization();
 		homepage = new HomePage();
+		homepagetest= new  HomePageTest();
 	}
 	
 	@Test(priority=1)
@@ -89,7 +94,6 @@ public class HomePageTest extends TestBasae{
 	public void clickHomePageCurrencyTest() throws InterruptedException {
 		test=extent.createTest("HOMEPAGE:TC_03-ClickHomePageCurrency");
 		homepage.clickCurrencyLink();
-		test.info("Opened CurrencyLink", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
 		Thread.sleep(2000);
 	}
 	
@@ -104,14 +108,13 @@ public class HomePageTest extends TestBasae{
 	public void clickOnContactUsPageTest() throws InterruptedException {
 		test=extent.createTest("HOMEPAGE:TC_05-ClickOnContactUsPageTest");
 		homepage.clickContactUsLink();
-		test.info("Opened ContactUsPage", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
 	}
 	
 	@Test(priority=6)
 	public void clickOnLoginPageTest() {
 		test=extent.createTest("HOMEPAGE:TC_06-ClickOnLoginPageTest");
 		homepage.ClickonLoginPageLink();
-		test.info("Opened LoginPage", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
+		
 	}
 	
 
@@ -119,7 +122,7 @@ public class HomePageTest extends TestBasae{
 	public void clickOnCreateAnAccountPageTest() {
 		test=extent.createTest("HOMEPAGE:TC_07-ClickOnCreateAnAccountPageTest");
 		homepage.CreateAccountClick();
-		test.info("Opened Create An Account Page", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
+		
 	}
 	
 	@Test(priority=8)
@@ -129,29 +132,102 @@ public class HomePageTest extends TestBasae{
 		
 		homepage.enterBookToSearch(BookToSearch);
 		test.info("CheckOut Page of searched Book");
-		//test.fail("Failed To Payment Books", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShots()).build());
+
 	}
 	
 	@Test(priority=9)
+	public void validateHomePageBanerPageTest() throws InterruptedException {
+		test=extent.createTest("HOMEPAGE:TC_09-validate HomePage Baner Test");
+		boolean flag=homepage.NivoImageClick();
+		Assert.assertTrue(flag);
+	}
+	
+	@Test(priority=10)
+	public void ClickHeaderMenuLinkTest() throws InterruptedException {
+		test=extent.createTest("HOMEPAGE:TC_10-validate HomePage Baner Test");
+		HeaderMenuLinks();
+	}
+	
+	@Test(priority=11)
 	public void verifyAddressOfCompany() {
-		test=extent.createTest("HOMEPAGE:TC_09-Verify Company Address Page Test");
+		test=extent.createTest("HOMEPAGE:TC_11-Verify Company Address Page Test");
 		String CompanyAdd=homepage.getCompanyAddress();
 		System.out.println("The Address of Company is===> "+ CompanyAdd);
 		String expectedAddress="Phone No: +1 281-738-1050 Email : support@ergodebooks.com Copyright @ 2021. ErgodeBooks.Com All Rights Reserved.";
 		Assert.assertEquals(CompanyAdd, expectedAddress);
-		
+		test.info("The Address of company is==>"+ driver.findElement(By.xpath("//div[@id='powered']")).getText());
 	}
 	
 	
-	public String getBase64ScreenShots() {
+	@AfterMethod
+	public void tearDown(ITestResult result) {
+		if(result.getStatus()==ITestResult.FAILURE) {
+			test.log(Status.FAIL, "Test cases MethodName Failed ==>" + result.getName());
+			test.log(Status.FAIL, "Test cases MethodName Error is==>" + result.getThrowable());
+			test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		}
+		else if(result.getStatus()==ITestResult.SKIP) {
+			test.log(Status.SKIP, "Test cases MethodName Skiped ==>" + result.getName());
+			test.log(Status.SKIP, "Test cases MethodName Skiped ==>" + result.getThrowable());	
+		}else if(result.getStatus()==ITestResult.SUCCESS) {
+			test.log(Status.PASS, "Test cases MethodName==>" + result.getName());
+			//String screenshotPath=LoginPageTest.getBase64ScreenShots();
+			test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		}
+		
+		driver.close();
+	}
+	
+	public static String getBase64ScreenShot() {
 		return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
 	}
 	
-	@AfterMethod
-	public void tearDown() {
-		driver.close();
+	public static void HeaderMenuLinks() throws InterruptedException {
+		JavaScriptUtil.drawBorder(homepage.MenuActionAdv, driver);
+		homepage.MenuActionAdv.click();
+		test.info("The MenuActionAdv Page. ", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		Thread.sleep(2000);
+		
+		JavaScriptUtil.drawBorder(homepage.MenuArtFilmPhoto, driver);
+		homepage.MenuArtFilmPhoto.click();
+		test.info("The MenuArtFilmPhoto Page. ", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		Thread.sleep(2000);
+		
+		JavaScriptUtil.drawBorder(homepage.MenuBusinessEcoLaw, driver);
+		homepage.MenuBusinessEcoLaw.click();
+		test.info("The MenuBusinessEcoLaw Page. ", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		Thread.sleep(2000);
+		
+		JavaScriptUtil.drawBorder(homepage.MenuChildrenBook, driver);
+		homepage.MenuChildrenBook.click();
+		test.info("The MenuChildrenBook Page. ", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		Thread.sleep(2000);
+		
+		JavaScriptUtil.drawBorder(homepage.MenuCraftHobbies, driver);
+		homepage.MenuCraftHobbies.click();
+		test.info("The MenuCraftHobbies Page. ", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		Thread.sleep(2000);
+		
+		JavaScriptUtil.drawBorder(homepage.MenuEducation, driver);
+		homepage.MenuEducation.click();
+		test.info("The MenuEducation Page. ", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		Thread.sleep(2000);
+		
+		JavaScriptUtil.drawBorder(homepage.MenuSelfHelp, driver);
+		homepage.MenuSelfHelp.click();
+		test.info("The MenuSelfHelp Page. ", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		Thread.sleep(2000);
+		
+		JavaScriptUtil.drawBorder(homepage.MenuBlog, driver);
+		homepage.MenuBlog.click();
+		test.info("The MenuBlog Page. ", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		Thread.sleep(2000);
+		homepage.clickHomePageLogo();
+		
 	}
+	
 }
+
 
 
 /*

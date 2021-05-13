@@ -43,7 +43,16 @@ public class RegisterAccountPage extends TestBasae {
 	public boolean  RegisterAccountLable() {
 		return RegisterAccountlogo.isDisplayed();
 	}
-	
+	public void registerWithInvalidData(String ftName,String ltName,String email,String dob,String pwd,String Confirmpwd) {
+		txtfirstname.sendKeys(ftName);
+		txtlastname.sendKeys(ltName);
+		txtemailId.sendKeys(email);
+		txtdob.sendKeys(dob);
+		txtdob.sendKeys(Keys.ENTER);
+		txtpassword.sendKeys(pwd);
+		txtconfirmpass.sendKeys(Confirmpwd);
+		
+	}
 	public void setAccountDetails(String ftName,String ltName,String email,String dob,String pwd,String Confirmpwd) {
 		txtfirstname.sendKeys(ftName);
 		txtlastname.sendKeys(ltName);

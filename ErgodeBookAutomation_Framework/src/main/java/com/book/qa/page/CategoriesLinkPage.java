@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.aq.Base.TestBasae;
+import com.qa.util.JavaScriptUtil;
 
 public class CategoriesLinkPage extends TestBasae{
 	
@@ -84,143 +85,165 @@ public class CategoriesLinkPage extends TestBasae{
 	
 	//1
 	public void ClickActionAdventureLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(ActionAdventureLink, driver);
 		ActionAdventureLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	//2
 	public void ClickArtsFilmPhotoLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(ActionAdventureLink, driver);
 		ArtsFilmPhotoLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	//3
 	public void ClickAutoGearLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(AutoGearLink, driver);
 		AutoGearLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	//4
 	public void ClickBiographAndMemorisLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(BiographAndMemorisLink, driver);
 		BiographAndMemorisLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//5
 	public void ClickBusinessEcoLawLinks() throws InterruptedException {
+		JavaScriptUtil.drawBorder(BusinessEcoLawLinks, driver);
 		BusinessEcoLawLinks.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//6
 	public void ClickCalendarsLinks() throws InterruptedException {
+		JavaScriptUtil.drawBorder(CalendarsLinks, driver);
 		CalendarsLinks.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//7
 	public void ClickCdVinlyLinks() throws InterruptedException {
+		JavaScriptUtil.drawBorder(CdVinlyLinks, driver);
 		CdVinlyLinks.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//8
 	public void ClickChildrenBookLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(ChildrenBookLink, driver);
 		ChildrenBookLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//9
 	public void ClickCraftHobbiesLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(CraftHobbiesLink, driver);
 		CraftHobbiesLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//10
 	public void ClickEducationLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(EducationLink, driver);
 		EducationLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
-	
 	//11
 	public void ClickFictionLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(FictionLink, driver);
 		FictionLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//12
 	public void ClickGayLasbianLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(GayLasbianLink, driver);
 		GayLasbianLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//13
 	public void ClickGiftsLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(GiftsLink, driver);
 		GiftsLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//14
 	public void ClickHealthFitnessLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(HealthFitnessLink, driver);
 		HealthFitnessLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//15
 	public void ClickHistoryLiterstureLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(HistoryLiterstureLink, driver);
 		HistoryLiterstureLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//16
 	public void ClickHumorEntertainmentLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(HumorEntertainmentLink, driver);
 		HumorEntertainmentLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//17
 	public void ClickMystryThrillerLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(MystryThrillerLink, driver);
 		MystryThrillerLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//18
 	public void ClickPoliticsSocietyLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(PoliticsSocietyLink, driver);
 		PoliticsSocietyLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//19
 	public void ClickReferenceLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(ReferenceLink, driver);
 		ReferenceLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//20
 	public void ClickReligionSpritualLink() throws InterruptedException {
+		JavaScriptUtil.drawBorder(ReligionSpritualLink, driver);
 		ReligionSpritualLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//21
 	public void ClickRomanceRelationsLink() throws InterruptedException {
 		JavascriptExecutor js= (JavascriptExecutor)driver;
 		js.executeScript("scrollBy(0,500)");
+		JavaScriptUtil.drawBorder(RomanceRelationsLink, driver);
 		RomanceRelationsLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//22
 	public void ClickSelfHelpLink() throws InterruptedException {
 		JavascriptExecutor js= (JavascriptExecutor)driver;
 		js.executeScript("scrollBy(0,500)");
+		JavaScriptUtil.drawBorder(SelfHelpLink, driver);
 		SelfHelpLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	//23
 	public void ClickTeenYoungAdultLink() throws InterruptedException {
 		JavascriptExecutor js= (JavascriptExecutor)driver;
 		js.executeScript("scrollBy(0,500)");
+		JavaScriptUtil.drawBorder(TeenYoungAdultLink, driver);
 		TeenYoungAdultLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	

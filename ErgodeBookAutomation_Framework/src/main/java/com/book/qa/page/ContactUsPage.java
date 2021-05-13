@@ -1,11 +1,13 @@
 package com.book.qa.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.aq.Base.TestBasae;
+import com.qa.util.JavaScriptUtil;
 
 public class ContactUsPage extends TestBasae{
 
@@ -35,18 +37,21 @@ public class ContactUsPage extends TestBasae{
 	public WebElement txtEnquiry;
 	@FindBy(xpath="//input[@value='SUBMIT']")
 	public WebElement ContactUsSubmitBtn;
-
+	@FindBy(xpath="//a[normalize-space()='Logout )']")
+	public static WebElement LogoutBtn;
 
 	public String ValidateContactusTitle() {
 		return driver.getTitle();
 	}
 	
 	public boolean verifyContactusLogoImg() {
+		JavaScriptUtil.drawBorder(ContactUsErgodeBookLogo, driver);
 		return ContactUsErgodeBookLogo.isDisplayed();
 	}
 	public String ValidateContactusLable() {
-		//ExpectedLable="Contact Us";
-		return driver.getTitle();
+		WebElement element= driver.findElement(By.xpath("//h1[normalize-space()='Contact Us']"));
+		JavaScriptUtil.drawBorder(element, driver);
+		return driver.findElement(By.xpath("//h1[normalize-space()='Contact Us']")).getText();
 	}
 	
 	public boolean verifyContactusUserId() {
@@ -61,12 +66,15 @@ public class ContactUsPage extends TestBasae{
 		txtTelephone.sendKeys(Telephone);
 		txtSubject.sendKeys(Subject);
 		txtEnquiry.sendKeys(Enquiry);
-		Thread.sleep(3000);
-//		JavascriptExecutor js=(JavascriptExecutor)driver;
-//		js.executeScript("scrollBy(0,1000)");
-		//ContactUsSubmitBtn.click();
-		
-		
+		Thread.sleep(1000);
+		JavascriptExecutor js=(JavascriptExecutor)driver;
+		WebElement Element=driver.findElement(By.xpath("//h1[normalize-space()='Contact Us']"));
+		js.executeScript("arguments[0].scrollIntoView();", Element);
+		//ContactUsSubmitBtn.click();	
+	}
+	
+	public void clickLogoutBtn() {
+		LogoutBtn.click();
 	}
 
 }

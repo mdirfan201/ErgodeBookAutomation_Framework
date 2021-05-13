@@ -18,6 +18,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import com.qa.util.TestUtil;
 import com.qa.util.WebEventListener;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class TestBasae {
 	
 	public static WebDriver driver;
@@ -39,7 +41,8 @@ public class TestBasae {
 		String browserName=prop.getProperty("browser");
 		
 		if(browserName.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", "D:\\IRFAN---\\java program\\ErgodeAutomation_Framework\\Browser-Driver\\chromedriver.exe");
+			//System.setProperty("webdriver.chrome.driver", "D:\\irfan\\selenium\\Lstest-All-Driver\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			driver= new ChromeDriver();
 		}else if(browserName.equalsIgnoreCase("FireFox")) {
 			System.setProperty("webdriver.gecko.driver", "D:\\IRFAN---\\java program\\ErgodeAutomation_Framework\\Browser-Driver\\geckodriver.exe");

@@ -37,8 +37,7 @@ public class CategoriesLinkPageTest extends TestBasae{
 	public void setupReports() {
 		
 		extent = new ExtentReports();
-		spark = new ExtentSparkReporter("C:\\Users\\MY-PC.DESKTOP-8EQSD1V\\git\\ErgodeBookAutomation_Framework\\"+
-					"ErgodeBookAutomation_Framework\\ExtentReports\\ErgodeBook_CategoriesLinkPageReport.html");
+		spark = new ExtentSparkReporter("C:\\Users\\MY-PC.DESKTOP-8EQSD1V\\git\\ErgodeBookAutomation_Framework\\ErgodeBookAutomation_Framework\\ExtentReports\\ErgodeBook_CategoriesLinkPageReport.html");
 		spark.config().setTheme(Theme.DARK);
 		spark.config().setReportName("Mohammed Irfanullah Ansari");
 		spark.config().setDocumentTitle("Automation Tes");
@@ -66,7 +65,7 @@ public class CategoriesLinkPageTest extends TestBasae{
 		categoriespageTest=new CategoriesLinkPageTest();
 	}
 	
-	@Test
+	@Test(priority=1)
 	public void ValidateCategoriesLink() throws InterruptedException {
 		test= extent.createTest("Validate Categories Link");
 		

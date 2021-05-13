@@ -1,11 +1,16 @@
 package com.qa.ErgodeBook.TestCase;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -23,21 +28,20 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.book.qa.page.HomePage;
 import com.book.qa.page.RegisterAccountPage;
+	
 import com.qa.Custome_Listener.CustomeListner;
-import com.qa.util.JavaScriptUtil;
 import com.qa.util.TestUtil;
 
 @Listeners(CustomeListner.class)
-public class RegisterAccountPageTest extends TestBasae{
+public class RegisterAccountPagefromDatabase extends TestBasae{
 	static HomePage homepage;
 	static RegisterAccountPage registeraccountpage;
-	static RegisterAccountPageTest registeraccountpagetest;
+	static RegisterAccountPagefromDatabase registeraccountpagetest;
 	static ExtentReports extent;
 	static ExtentSparkReporter spark;
 	static ExtentTest test;
 	String SheetName ="Registeration";
-	String InvalidsheetName ="InvalidRegisterData";
-	public RegisterAccountPageTest()  {
+	public RegisterAccountPagefromDatabase()  {
 		super();
 	}
 	
@@ -67,7 +71,7 @@ public class RegisterAccountPageTest extends TestBasae{
 		@BeforeMethod
 		public void setup() throws InterruptedException {
 		initialization();
-		registeraccountpagetest=new RegisterAccountPageTest();
+		registeraccountpagetest=new RegisterAccountPagefromDatabase();
 		homepage = new HomePage();
 		homepage.CreateAccountClick();
 		registeraccountpage= new RegisterAccountPage();
@@ -82,15 +86,16 @@ public class RegisterAccountPageTest extends TestBasae{
 			String actualTitle=registeraccountpage.validateRegisterPageTitle();
 			String ExpectedTitle="Register Account";
 			Assert.assertEquals(actualTitle, ExpectedTitle);
-			test.log(Status.PASS, "Test Case Pass Actual and Expected Title are same==>"+driver.getTitle());
+			test.log(Status.PASS, "Test Case Pass Actual and Expected Title are same");
 			
 		}
 	
 		@Test(priority=2)
-		public void verifyRegisterLogoImg() {
+		public void verifyContactUSLogoImg() {
 		test=extent.createTest("TC_02: Validating ContactUs Page Logo Image");
 		boolean flag=registeraccountpage.RegisterAccountLable();
 		Assert.assertTrue(flag);
+		test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
 		
 	}
 		
@@ -100,65 +105,58 @@ public class RegisterAccountPageTest extends TestBasae{
 			registeraccountpage.setAccountDetails("", "", "", "", "", "");
 			Thread.sleep(2000);
 			registeraccountpage.clickCheckBox();
+			test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
 			registeraccountpage.CilckContinue();
-			WebElement element= driver.findElement(By.xpath("//h2[normalize-space()='Your Personal Details']"));
-			JavaScriptUtil.scrolluptoanelementByJS(element, driver);
 			test.info("The waring msg displyed in First Name:===> "+ driver.findElement(By.xpath("//span[normalize-space()='First Name must be between 3 and 32 characters!']")).getText());
 			test.info("The waring msg displyed in Last Name:===> "+ driver.findElement(By.xpath("//span[normalize-space()='Last Name must be between 3 and 32 characters!']")).getText());
 			test.info("The waring msg displyed in E-Mail:===> "+ driver.findElement(By.xpath("//span[normalize-space()='E-Mail Address does not appear to be valid!']")).getText());
 			test.info("The waring msg displyed in Password:===> "+ driver.findElement(By.xpath("//span[normalize-space()='Password must be between 4 and 20 characters!']")).getText());
 			test.info("The waring msg displyed in Enter the code in the box:===> "+ driver.findElement(By.xpath("//span[normalize-space()='Invalid Captcha']")).getText());
+			test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
 			
 		}
 		
-		@Test(priority=4,dataProvider="getRegisterInvalidDetails")
-		public void ContinueRegisterWithInValidFields(String FirstName,String LastName,String Email,String DOB,String Password,String ConfirmPass) throws InterruptedException {
-			test=extent.createTest("TC_04: Continue Register With INValid Data in Fields Test");
+		@Test(priority=3,dataProvider="getRegisterDetails")
+		public void ContinueRegisterWithValidFields(String FirstName,String LastName,String Email,String DOB,String Password,String ConfirmPass) throws InterruptedException, SQLException {
+			test=extent.createTest("TC_04: Continue Register With Valid Data in Fields Test");
 			//contactuspage.enterDeatilsOfContactUs(Name, EmailAddress, Telephone, Subject, Enquiry);
 			registeraccountpage.setAccountDetails(FirstName,LastName,Email,DOB,Password,ConfirmPass);
 			Thread.sleep(2000);
+			test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
 			registeraccountpage.clickCheckBox();
+			test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
 			registeraccountpage.CilckContinue();
-			WebElement element= driver.findElement(By.xpath("//h2[normalize-space()='Your Personal Details']"));
-			JavaScriptUtil.scrolluptoanelementByJS(element, driver);
 			test.info("The waring msg displyed in Enter the code in the box:===> "+ driver.findElement(By.xpath("//span[normalize-space()='Invalid Captcha']")).getText());
+	//********************************************************************************************************************//	
+			//Database validation
+			Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/","root","");
+			java.sql.Statement stmt= con.createStatement();
+			String query="Select firstname 	,lastname,email,telephone from oc_customer";
+			ResultSet rs=stmt.executeQuery(query);
+			boolean status=false;
+			while(rs.next()) {
+				String firstname= rs.getString("firstname");
+				String lastname= rs.getString("lastname");
+				String email= rs.getString("email");
+				String telephone= rs.getString("telephone");
 			
+				if(FirstName.equals(firstname) && LastName.equals(lastname)  && Email.equals(email) ) {
+					System.out.println("Record found in the table || TestCase passed");
+					status=true;
+					break;
+				}
+			}
+			if(status==false) {
+				System.out.println("Record not found || Test failed");
+			}
 			
-		}
-		
-		
-		@Test(priority=5,dataProvider="getRegisterDetails")
-		public void ContinueRegisterWithValidFields(String FirstName,String LastName,String Email,String DOB,String Password,String ConfirmPass) throws InterruptedException {
-			test=extent.createTest("TC_05: Continue Register With Valid Data in Fields Test");
-			//contactuspage.enterDeatilsOfContactUs(Name, EmailAddress, Telephone, Subject, Enquiry);
-			registeraccountpage.setAccountDetails(FirstName,LastName,Email,DOB,Password,ConfirmPass);
-			Thread.sleep(2000);
-			registeraccountpage.clickCheckBox();
-			registeraccountpage.CilckContinue();
-			WebElement element= driver.findElement(By.xpath("//h2[normalize-space()='Your Personal Details']"));
-			JavaScriptUtil.scrolluptoanelementByJS(element, driver);
-			test.info("The waring msg displyed in Enter the code in the box:===> "+ driver.findElement(By.xpath("//span[normalize-space()='Invalid Captcha']")).getText());
-			
+	//********************************************************************************************************************//
 			
 		}
 		
 		
 		@AfterMethod
-		public void tearDown(ITestResult result) {
-			if(result.getStatus()==ITestResult.FAILURE) {
-				test.log(Status.FAIL, "Test cases MethodName Failed ==>" + result.getName());
-				test.log(Status.FAIL, "Test cases MethodName Error is==>" + result.getThrowable());
-				test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
-			}
-			else if(result.getStatus()==ITestResult.SKIP) {
-				test.log(Status.SKIP, "Test cases MethodName Skiped ==>" + result.getName());
-				test.log(Status.SKIP, "Test cases MethodName Skiped ==>" + result.getThrowable());	
-			}
-			else if(result.getStatus()==ITestResult.SUCCESS) {
-				test.log(Status.PASS, "Test cases MethodName==>" + result.getName());
-				//String screenshotPath=LoginPageTest.getBase64ScreenShots();
-				test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
-			}
+		public void tearDown() {
 			driver.quit();
 		}
 		
@@ -169,12 +167,6 @@ public class RegisterAccountPageTest extends TestBasae{
 		@DataProvider
 		public Object[][] getRegisterDetails() {
 			Object data[][]=TestUtil.getTestData(SheetName);
-			return data;
-		}
-		
-		@DataProvider
-		public Object[][] getRegisterInvalidDetails() {
-			Object data[][]=TestUtil.getTestInvalidData(InvalidsheetName);
 			return data;
 		}
 		

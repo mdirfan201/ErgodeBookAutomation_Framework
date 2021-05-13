@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -85,10 +86,8 @@ public class ForgotPageTest extends TestBasae{
 	public void validateForgotPageLable() {
 		test=extent.createTest("TC_02: Validating Forgot Page Lable");
 		test.info("The Actual Lable is===>" + driver.findElement(By.xpath("//h1[text()='Reset Your Password']")).getText());
-		
 		boolean flag=forgotpage.validateForgotPageLable();
 		Assert.assertTrue(flag);
-		test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
 	}
 	
 	@Test(priority=3)
@@ -96,7 +95,6 @@ public class ForgotPageTest extends TestBasae{
 		test=extent.createTest("TC_03:Enter Forgot Password Email-Address Empty Test");
 		forgotpage.enterEmailAddForForgot("");
 		Thread.sleep(2000);
-		test.info("Data Entered", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
 		Thread.sleep(2000);
 	}
 	
@@ -105,15 +103,27 @@ public class ForgotPageTest extends TestBasae{
 		test=extent.createTest("TC_04:Enter Forgot Password Email-Address Test");
 		forgotpage.enterEmailAddForForgot(prop.getProperty("EmailAddress"));
 		test.info("The warning is===>"+ driver.findElement(By.xpath("//div[@class='warning']")).getText());
-		test.info("Data Entered", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
 		Thread.sleep(2000);
 	}
 	
 	@AfterMethod
-	public void tearDown() {
+	public void tearDown(ITestResult result) {
+		if(result.getStatus()==ITestResult.FAILURE) {
+			test.log(Status.FAIL, "Test cases MethodName Failed ==>" + result.getName());
+			test.log(Status.FAIL, "Test cases MethodName Error is==>" + result.getThrowable());
+			test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		}
+		else if(result.getStatus()==ITestResult.SKIP) {
+			test.log(Status.SKIP, "Test cases MethodName Skiped ==>" + result.getName());
+			test.log(Status.SKIP, "Test cases MethodName Skiped ==>" + result.getThrowable());	
+		}
+		else if(result.getStatus()==ITestResult.SUCCESS) {
+			test.log(Status.PASS, "Test cases MethodName==>" + result.getName());
+			//String screenshotPath=LoginPageTest.getBase64ScreenShots();
+			test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
+		}
 		driver.quit();
-	}
-	
+	}	
 	public String getBase64ScreenShot() {
 		return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
 	}

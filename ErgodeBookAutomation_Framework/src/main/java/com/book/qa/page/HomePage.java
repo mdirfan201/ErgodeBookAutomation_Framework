@@ -13,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.aq.Base.TestBasae;
 import com.aventstack.extentreports.ExtentTest;
+import com.qa.util.JavaScriptUtil;
 
 public class HomePage extends TestBasae{
 	static ExtentTest test;
@@ -84,12 +85,33 @@ public class HomePage extends TestBasae{
 	
 	@FindBy(xpath="//div[@id='powered']")
 	WebElement telephoneAndEmail;
+	@FindBy(xpath="//div[@id='footer']") 
+	WebElement fullFooterImg;
+	
+	//--------------Niv0 Image-------------------
+	@FindBy(xpath="//div[@id='menu']//a[text()='Action & Adventure']")
+	public WebElement MenuActionAdv;
+	@FindBy(xpath="//div[@id='menu']//a[text()='Arts, Films & Photography']")
+	public WebElement MenuArtFilmPhoto ;
+	@FindBy(xpath="//div[@id='menu']//a[text()='Business, Economics & Law']")
+	public WebElement MenuBusinessEcoLaw ;
+	@FindBy(xpath="//div[@id='menu']//a[@href='https://ergodebooks.com/childrens-books-comics-graphic-novels']")
+	public WebElement MenuChildrenBook ;
+	@FindBy(xpath="//div[@id='menu']//a[normalize-space()='Crafts, Hobbies & Home']")
+	public WebElement MenuCraftHobbies ;
+	@FindBy(xpath="//div[@id='menu']//a[normalize-space()='Education']")
+	public WebElement MenuEducation ;
+	@FindBy(xpath="//div[@id='menu']//a[normalize-space()='Self-Help']")
+	public WebElement MenuSelfHelp ;
+	@FindBy(xpath="//a[normalize-space()='Blog']")
+	public WebElement MenuBlog ;
 	
 	public String verifyHomePageTitle() {
 		return driver.getTitle();
 	}
 	
 	public boolean isLogoDisplayed() {
+		JavaScriptUtil.drawBorder(ergodebookLogo, driver);
 		return ergodebookLogo.isDisplayed();
 	}
 	
@@ -114,28 +136,26 @@ public class HomePage extends TestBasae{
 		Actions action=new Actions(driver);
 		action.moveToElement(ClickMyAccountHeader).build().perform();
 		clickMyAccountLink.click();
-		//getFailedScreenShot("MyAccount");
-		Thread.sleep(4000);
+		getFailedScreenShot("MyAccount");
+		Thread.sleep(2000);
 		
 		action.moveToElement(ClickMyAccountHeader).build().perform();
 		clickWishListLink.click();
-		//getFailedScreenShot("WishList");
-		//test.info("Checking to WishList page");
-		Thread.sleep(4000);
+		getFailedScreenShot("WishList");
+		Thread.sleep(2000);
 		
 		action.moveToElement(ClickMyAccountHeader).build().perform();
 		clickShoppingCartLink.click();
-		//getFailedScreenShot("Shopping Cart");
-		//test.info("Checking to Shopping Cart page");
+		getFailedScreenShot("Shopping Cart");
+	
 		driver.findElement(By.xpath("//a[normalize-space()='Continue']")).click();
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		
 		action.moveToElement(ClickMyAccountHeader).build().perform();
 		clickCheckoutLink.click();
-		//getFailedScreenShot("Checkout");
-		//test.info("Checking to Checkout page");
+		getFailedScreenShot("Checkout");
 		driver.findElement(By.xpath("//a[normalize-space()='Continue']")).click();
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		
 	}
 	
@@ -160,6 +180,7 @@ public class HomePage extends TestBasae{
 	
 	public void enterBookToSearch(String EnterBookName) throws InterruptedException {
 		txtSearchBook.sendKeys(EnterBookName,Keys.ENTER);
+		
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("scrollBy(0,500)");
 		//getFailedScreenShot("AddToCart");
@@ -168,6 +189,52 @@ public class HomePage extends TestBasae{
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//div[@class='right']/a[@class='button']")).click();
 		getFailedScreenShot("CheckOut");
+		
+	}
+	
+	
+	public boolean NivoImageClick() throws InterruptedException {
+		driver.findElement(By.xpath("//a[@rel='0']")).click();
+		driver.findElement(By.xpath("//a[@rel='0']")).isDisplayed();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[@rel='1']")).click();
+		driver.findElement(By.xpath("//a[@rel='1']")).isDisplayed();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[@rel='2']")).click();
+		driver.findElement(By.xpath("//a[@rel='2']")).isDisplayed();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//a[@rel='3']")).click();
+		driver.findElement(By.xpath("//a[@rel='3']")).isDisplayed();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//a[@rel='4']")).click();
+		driver.findElement(By.xpath("//a[@rel='4']")).isDisplayed();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//a[@rel='5']")).click();
+		driver.findElement(By.xpath("//a[@rel='5']")).isDisplayed();
+		Thread.sleep(2000);
+		return true;
+		
+		
+		/*Thread.sleep(2000);
+		Actions act= new Actions(driver);
+		WebElement ele= driver.findElement(By.xpath("//a[@href='https://ergodebooks.com/Gifts/mothers-day?utm_source=Website&utm_medium=Banner&utm_campaign=Mothers_Day']"));
+		
+		//act.moveToElement(ele).build().perform();
+		ele.click();
+		Thread.sleep(2000);
+		clickOnHomePageLogoBtn.click();
+		
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[@rel='1']")).click();
+		Thread.sleep(2000);
+		WebElement ele2= driver.findElement(By.xpath("//img[@src='https://ergodebooks.com/image/cache/data/Banner 2021/Crafts, Hobbies _ Home 3-980x280.jpg' and @alt='Craft ']"));
+		//act.moveToElement(ele2).build().perform();
+		ele2.click();
+		Thread.sleep(2000);*/
+		
 		
 	}
 	
@@ -248,7 +315,10 @@ public List<String> getcategoryList() {
 	
 	
 	public String getCompanyAddress() {
-
+		WebElement element= driver.findElement(By.xpath("//h2[text()='Ergodebooks.com - Best online store to shop!']"));
+		JavaScriptUtil.scrolluptoanelementByJS(element, driver);
+		WebElement ele= driver.findElement(By.xpath("//div[@id='powered']"));
+		JavaScriptUtil.drawBorder(ele, driver);
 		return address.getText();
 	}
 

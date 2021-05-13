@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.aq.Base.TestBasae;
+import com.qa.util.JavaScriptUtil;
 
 public class ForgotPasswordPage extends TestBasae{
 
@@ -30,6 +31,7 @@ public class ForgotPasswordPage extends TestBasae{
 		return driver.getTitle();
 	}
 	public boolean validateForgotPageLable() {
+		JavaScriptUtil.drawBorder(ForgotPageLable, driver);
 		return ForgotPageLable.isDisplayed();
 	}
 	
