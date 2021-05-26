@@ -130,7 +130,6 @@ public class RegisterAccountPageTest extends TestBasae{
 		@Test(priority=5,dataProvider="getRegisterDetails")
 		public void ContinueRegisterWithValidFields(String FirstName,String LastName,String Email,String DOB,String Password,String ConfirmPass) throws InterruptedException {
 			test=extent.createTest("TC_05: Continue Register With Valid Data in Fields Test");
-			//contactuspage.enterDeatilsOfContactUs(Name, EmailAddress, Telephone, Subject, Enquiry);
 			registeraccountpage.setAccountDetails(FirstName,LastName,Email,DOB,Password,ConfirmPass);
 			Thread.sleep(2000);
 			registeraccountpage.clickCheckBox();

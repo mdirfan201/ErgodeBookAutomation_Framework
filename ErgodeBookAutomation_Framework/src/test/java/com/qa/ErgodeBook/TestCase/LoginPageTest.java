@@ -124,6 +124,11 @@ public class LoginPageTest extends TestBasae {
 		Thread.sleep(2000);
 	
 	}
+	@Test(priority=7)
+	public void validateLoginPageMyAccountInfoTest() {
+		test=extent.createTest("TC_07 :validate LoginPage MyAccount Info Test");
+		loginpage.validateEditYourAccount(prop.getProperty("username"), prop.getProperty("password"));
+	}
 
 
 	@AfterMethod

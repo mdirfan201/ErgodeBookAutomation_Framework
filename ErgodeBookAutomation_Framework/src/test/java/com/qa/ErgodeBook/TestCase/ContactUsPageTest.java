@@ -188,7 +188,7 @@ public class ContactUsPageTest extends TestBasae{
 		contactuspage.enterDeatilsOfContactUs(Name, EmailAddress, Telephone, Subject, Enquiry);
 		Thread.sleep(2000);
 		test.info("The Name is==>"+contactuspage.txtUSerName.getAttribute("value"));
-		test.info("The Name is==>"+contactuspage.txtUserEmailAddress.getAttribute("value"));
+		test.info("The EmailID is==>"+contactuspage.txtUserEmailAddress.getAttribute("value"));
 		Thread.sleep(2000);
 		contactuspage.clickLogoutBtn();
 	}

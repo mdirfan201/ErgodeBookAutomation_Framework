@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -23,6 +24,7 @@ import com.book.qa.page.ForgotPasswordPage;
 import com.book.qa.page.HomePage;
 import com.book.qa.page.LoginPage;
 import com.qa.Custome_Listener.CustomeListner;
+import com.qa.util.TestUtil;
 
 @Listeners(CustomeListner.class)
 public class ForgotPageTest extends TestBasae{
@@ -33,6 +35,7 @@ public class ForgotPageTest extends TestBasae{
 	static ExtentReports extent;
 	static ExtentSparkReporter spark;
 	static ExtentTest test;
+	String sheetName="Forgot";
 	
 	public ForgotPageTest() {
 		super();
@@ -98,10 +101,16 @@ public class ForgotPageTest extends TestBasae{
 		Thread.sleep(2000);
 	}
 	
-	@Test(priority=4)
-	public void enterForgotPasswordEmailAdressTest() throws InterruptedException {
+	@DataProvider
+	public Object[][] getTestdata() {
+		Object data[][]=TestUtil.getTestData(sheetName);
+		return data;
+	}
+	
+	@Test(priority=4, dataProvider="getTestdata")
+	public void enterForgotPasswordEmailAdressTest(String Email) throws InterruptedException {
 		test=extent.createTest("TC_04:Enter Forgot Password Email-Address Test");
-		forgotpage.enterEmailAddForForgot(prop.getProperty("EmailAddress"));
+		forgotpage.enterEmailAddForForgot(Email);
 		test.info("The warning is===>"+ driver.findElement(By.xpath("//div[@class='warning']")).getText());
 		Thread.sleep(2000);
 	}

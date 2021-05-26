@@ -35,8 +35,8 @@ public class ForgotPasswordPage extends TestBasae{
 		return ForgotPageLable.isDisplayed();
 	}
 	
-	public void enterEmailAddForForgot(String EmailAddres) throws InterruptedException {
-		txtEmailAddress.sendKeys(EmailAddres);
+	public void enterEmailAddForForgot(String email) throws InterruptedException {
+		txtEmailAddress.sendKeys(email);
 		clickContinueBtn.click();
 	}
 }

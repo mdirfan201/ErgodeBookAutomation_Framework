@@ -3,16 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.ErgodeBook.TestCase.MyAccountPageTest">
+      <class name="com.qa.ErgodeBook.TestCase.ContactUsPageTest">
         <methods>
-          <include name="setup"/>
-          <include name="ValidateMyAccountTitleTest"/>
+          <include name="ExtentReportsetUp"/>
           <include name="tearDown"/>
           <include name="tearExtentReport"/>
-          <include name="ClickMyAccountLinkTest"/>
-          <include name="setupExtentReport"/>
+          <include name="EnterDataOnContactUsPage"/>
+          <include name="setup"/>
         </methods>
-      </class> <!-- com.qa.ErgodeBook.TestCase.MyAccountPageTest -->
+      </class> <!-- com.qa.ErgodeBook.TestCase.ContactUsPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

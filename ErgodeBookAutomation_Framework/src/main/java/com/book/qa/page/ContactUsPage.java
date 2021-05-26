@@ -40,6 +40,7 @@ public class ContactUsPage extends TestBasae{
 	@FindBy(xpath="//a[normalize-space()='Logout )']")
 	public static WebElement LogoutBtn;
 
+	
 	public String ValidateContactusTitle() {
 		return driver.getTitle();
 	}
